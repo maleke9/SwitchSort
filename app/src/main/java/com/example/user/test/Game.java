@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Game extends Activity implements View.OnClickListener {
 
-    Button btnAnswer1,btnAnswer2,btnAnswer3,btnAnswer4,btnGameExit;
+    Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4, btnGameExit;
     TextView inGameSearch;
     int correctAnswer = -1;
     List<Integer> generated = new LinkedList<Integer>();
@@ -27,6 +27,8 @@ public class Game extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_game);
 
         generated = arrayToList(GlobVar.getInstance().numbers);
+
+        //Ini for the Buttons
         btnAnswer1 = (Button) findViewById(R.id.btnAnswer1);
         btnAnswer2 = (Button) findViewById(R.id.btnAnswer2);
         btnAnswer3 = (Button) findViewById(R.id.btnAnswer3);
@@ -40,22 +42,21 @@ public class Game extends Activity implements View.OnClickListener {
         btnGameExit.setOnClickListener(this);
 
 
-
         setupBtnForGame();
         setCorrectAnswer();
 
         inGameSearch = (TextView) findViewById(R.id.tv_inGameSearch);
-        inGameSearch.setText("Find Number: "+Integer.toString(correctAnswer));
+        inGameSearch.setText("Find Number: " + Integer.toString(correctAnswer));
     }
 
     private void setCorrectAnswer() {
-        correctAnswer = GlobVar.getInstance().numbers[GlobVar.getInstance().numbers.length-1];
+        correctAnswer = GlobVar.getInstance().numbers[GlobVar.getInstance().numbers.length - 1];
     }
 
     @Override
     public void onClick(View v) {
-        Log.d("correctAnswer",Integer.toString(correctAnswer));
-        switch (v.getId()){
+        Log.d("correctAnswer", Integer.toString(correctAnswer));
+        switch (v.getId()) {
             case R.id.btnAnswer1:
                 checkCorrectAnswer(btnAnswer1.getText());
                 break;
@@ -69,15 +70,15 @@ public class Game extends Activity implements View.OnClickListener {
                 checkCorrectAnswer(btnAnswer4.getText());
                 break;
             case R.id.btnGameExit:
-                Intent gameExit = new Intent(this,Menue.class);
+                Intent gameExit = new Intent(this, Menue.class);
                 startActivity(gameExit);
                 this.finish();
         }
     }
-    private List<Integer> arrayToList(int[] ints ){
+
+    private List<Integer> arrayToList(int[] ints) {
         List<Integer> intList = new ArrayList<Integer>();
-        for (int i : ints)
-        {
+        for (int i : ints) {
             intList.add(i);
         }
         return intList;
@@ -85,31 +86,24 @@ public class Game extends Activity implements View.OnClickListener {
 
 
     private void checkCorrectAnswer(CharSequence text) {
-    if(text.equals(Integer.toString(correctAnswer))){
-        Intent backToMain = new Intent(this,Menue.class);
-        startActivity(backToMain);
-        this.finish();
-    }
-    else{
-        Toast toast = Toast.makeText(getApplicationContext(),
-                "Wrong Number",
-                Toast.LENGTH_SHORT);
+        if (text.equals(Integer.toString(correctAnswer))) {
+            Intent backToMain = new Intent(this, Menue.class);
+            startActivity(backToMain);
+            this.finish();
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Wrong Number",
+                    Toast.LENGTH_SHORT);
 
-        toast.show();
-    }
+            toast.show();
+        }
     }
 
-    public void setupBtnForGame(){
+    public void setupBtnForGame() {
 
         btnAnswer1.setText(generated.get(0).toString());
         btnAnswer2.setText(generated.get(1).toString());
         btnAnswer3.setText(generated.get(2).toString());
         btnAnswer4.setText(generated.get(3).toString());
     }
-
-
-
-
-
-
 }
