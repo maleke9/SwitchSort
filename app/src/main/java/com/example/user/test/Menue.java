@@ -8,22 +8,39 @@ import android.widget.Button;
 
 public class Menue extends Activity implements View.OnClickListener {
 
-    Button btnStart;
+    Button btn_Start, btn_Settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menue);
-        btnStart =  findViewById(R.id.btnStart);
-        btnStart.setOnClickListener(this);
+
+        //Start Game Button
+        btn_Start =  findViewById(R.id.btn_Start);
+        btn_Start.setOnClickListener(this);
+
+        //Settings Button
+        btn_Settings =  findViewById(R.id.btn_settings);
+        btn_Settings.setOnClickListener(this);
 
 
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, Fade_pregame.class);
-        startActivity(intent);
+        switch(v.getId()){
+
+            case R.id.btn_settings:
+                Intent toSettings = new Intent(this, SettingsManager.class);
+                startActivity(toSettings);
+                break;
+
+            case R.id.btn_Start:
+                Intent toGame = new Intent(this, Fade_pregame.class);
+                startActivity(toGame);
+                break;
+        }
+
         this.finish();
     }
 }

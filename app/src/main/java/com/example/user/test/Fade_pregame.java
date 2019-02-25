@@ -48,13 +48,10 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
     }
 
     public List<Integer> numbers(int numbersNeeded) {
-        int max = 10;
-        if (max < numbersNeeded) {
-            throw new IllegalArgumentException("Can't ask for more numbers than are available");
-        }
+
         List<Integer> generated = new LinkedList<>();
         while (generated.size() < numbersNeeded) {
-            Integer next = rng.nextInt(max) + 1;
+            Integer next = rng.nextInt(numbersNeeded) + 1;
             generated.add(next);
         }
         return generated;
