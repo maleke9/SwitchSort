@@ -34,7 +34,7 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
         btnStartGame = findViewById(R.id.btn_startGame);
         btnStartGame.setOnClickListener(this);
 
-        numbers = numbers(4);
+        numbers = numbers(9);
         this.correctAnswer = numbers.get(randomizer.nextInt(numbers.size()));
         numbers.add(correctAnswer);
 
@@ -44,6 +44,7 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
         //Store numbers in Global variable
         GlobVar.getInstance().numbers = intArray;
         tv_toBeSearchedNumber.setText(Integer.toString(correctAnswer));
+
     }
 
     public List<Integer> numbers(int numbersNeeded) {
@@ -63,7 +64,9 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         //Konsolenausgabe via logcat
         //Log.d("Array", numbers.toString());
-        Intent intent = new Intent(this, Game.class);
+        //Intent intent = new Intent(this, Game.class);
+        Intent intent = new Intent(this, test_dynamic.class);
+
         startActivity(intent);
         this.finish();
     }
