@@ -10,17 +10,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class test_dynamic extends Activity implements View.OnClickListener {
-    int correctAnswer = 3;
+    int correctAnswer = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_dynamic);
         setCorrectAnswer();
-        GridLayout mainLayout = (GridLayout)findViewById(R.id.gridlayout);
+        GridLayout mainLayout = findViewById(R.id.gridlayout);
         mainLayout.setColumnCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
         mainLayout.setRowCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
-        TextView tv_gameShowCorrectAnswer =  (TextView) findViewById(R.id.tv_gameShowCorrectAnswer);
-        tv_gameShowCorrectAnswer.setText("Find : "+Integer.toString(correctAnswer));
+        TextView tv_gameShowCorrectAnswer = findViewById(R.id.tv_gameShowCorrectAnswer);
+        String gameShowCorrectAnswer = "Find : "+Integer.toString(correctAnswer);
+        tv_gameShowCorrectAnswer.setText(gameShowCorrectAnswer);
         createButtons(mainLayout);
 
 

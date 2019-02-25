@@ -2,13 +2,12 @@ package com.example.user.test;
 
 
 public class GlobVar {
-    public int[] numbers;
-    public int gameMode= 9;
-    public String temp_text;
-    public int temp;
+    int[] numbers;
+    int gameMode= 4;
+    String temp_text;
     private static GlobVar instance = null;
 
-    protected GlobVar() {
+    private GlobVar() {
     }
 
     public static GlobVar getInstance() {

@@ -11,11 +11,11 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class Fade_pregame extends Activity implements View.OnClickListener {
 
-    private int correctAnswer = -1;
     int[] intArray;
     Button btnStartGame;
     List<Integer> numbers;
@@ -29,13 +29,13 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.activity_fade_pregame);
         TextView tv_toBeSearchedNumber;
-        tv_toBeSearchedNumber = (TextView) findViewById(R.id.tv_toBeSearchedNumber);
+        tv_toBeSearchedNumber = findViewById(R.id.tv_toBeSearchedNumber);
 
         btnStartGame = findViewById(R.id.btn_startGame);
         btnStartGame.setOnClickListener(this);
 
-        numbers = numbers(9);
-        this.correctAnswer = numbers.get(randomizer.nextInt(numbers.size()));
+        numbers = numbers(GlobVar.getInstance().gameMode);
+        int correctAnswer = numbers.get(randomizer.nextInt(numbers.size()));
         numbers.add(correctAnswer);
 
         //List to array
@@ -43,7 +43,7 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
 
         //Store numbers in Global variable
         GlobVar.getInstance().numbers = intArray;
-        tv_toBeSearchedNumber.setText(Integer.toString(correctAnswer));
+        tv_toBeSearchedNumber.setText(String.format(Locale.GERMAN,"%d", correctAnswer));
 
     }
 
@@ -52,7 +52,7 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
         if (max < numbersNeeded) {
             throw new IllegalArgumentException("Can't ask for more numbers than are available");
         }
-        List<Integer> generated = new LinkedList<Integer>();
+        List<Integer> generated = new LinkedList<>();
         while (generated.size() < numbersNeeded) {
             Integer next = rng.nextInt(max) + 1;
             generated.add(next);
@@ -64,9 +64,7 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         //Konsolenausgabe via logcat
         //Log.d("Array", numbers.toString());
-        //Intent intent = new Intent(this, Game.class);
         Intent intent = new Intent(this, test_dynamic.class);
-
         startActivity(intent);
         this.finish();
     }
