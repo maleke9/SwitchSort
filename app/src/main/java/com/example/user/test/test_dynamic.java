@@ -14,7 +14,7 @@ public class test_dynamic extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_dynamic);
+        setContentView(R.layout.activity_game);
         setCorrectAnswer();
         GridLayout mainLayout = findViewById(R.id.gridlayout);
         mainLayout.setColumnCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
