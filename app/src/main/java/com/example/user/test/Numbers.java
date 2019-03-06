@@ -1,7 +1,11 @@
 package com.example.user.test;
 
+import android.util.Log;
+import android.widget.Switch;
+
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.util.EmptyStackException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -40,5 +44,27 @@ public class Numbers {
     public void setGame() {
         getNumbers(globvar.gameMode);
         setCorrectAnswer();
+    }
+    public String setNumberBin(int number){
+    return Integer.toBinaryString(number);
+    }
+    public String setNumberHex(int number){
+    return Integer.toHexString(number);
+    }
+    public String getCorrectNumberType(int number){
+        switch (globvar.numberType){
+            case DEZ:
+                return Integer.toString(number);
+            case BIN:
+                return setNumberBin(number);
+            case HEX:
+                return setNumberHex(number);
+                default:
+                    throw new RuntimeException();
+        }
+    }
+
+    public String getCorrectAnswer() {
+        return getCorrectNumberType(correctAnswer);
     }
 }

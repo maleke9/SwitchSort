@@ -3,6 +3,7 @@ package com.example.user.test;
 
 public class GlobVar {
     int gameMode= 4;
+    NumberType numberType;
     String temp_text;
     private static GlobVar instance = null;
 
@@ -14,5 +15,8 @@ public class GlobVar {
             instance = new GlobVar();
         }
         return instance;
+    }
+    public void setNumberType(NumberType numberType){
+        this.numberType = numberType;
     }
 }

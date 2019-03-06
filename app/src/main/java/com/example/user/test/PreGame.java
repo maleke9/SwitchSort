@@ -3,6 +3,7 @@ package com.example.user.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,14 +17,15 @@ import java.util.Random;
 
 public class PreGame extends Activity implements View.OnClickListener {
 
-    int[] intArray;
     Button btnStartGame;
-    List<Integer> gameNumbers;
+    GlobVar globVar = GlobVar.getInstance();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        globVar.setNumberType(NumberType.BIN);
 
         setContentView(R.layout.activity_fade_pregame);
         TextView tv_toBeSearchedNumber;
@@ -36,8 +38,9 @@ public class PreGame extends Activity implements View.OnClickListener {
         GlobVar globvar = GlobVar.getInstance();
 
         numbers.setGame();
+        Log.d("number",Integer.toString(numbers.correctAnswer));
 
-        tv_toBeSearchedNumber.setText(String.format(Locale.GERMAN,"%d", numbers.correctAnswer));
+        tv_toBeSearchedNumber.setText(numbers.getCorrectAnswer());
 
     }
 
