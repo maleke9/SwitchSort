@@ -20,7 +20,7 @@ public class Game extends Activity implements View.OnClickListener {
         mainLayout.setColumnCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
         mainLayout.setRowCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
         TextView tv_gameShowCorrectAnswer = findViewById(R.id.tv_gameShowCorrectAnswer);
-        String gameShowCorrectAnswer = "Find : "+Integer.toString(numbers.correctAnswer);
+        String gameShowCorrectAnswer = "Find : "+numbers.getCorrectAnswer();
         tv_gameShowCorrectAnswer.setText(gameShowCorrectAnswer);
         createButtons(mainLayout);
 
@@ -30,11 +30,12 @@ public class Game extends Activity implements View.OnClickListener {
     private void createButtons(GridLayout mainLayout) {
         for (int i = 0; i <= globVar.gameMode-1;i ++ ) {
             int temp_number = numbers.gameNumbers[i];
-            GlobVar.getInstance().temp_text = Integer.toString(temp_number);
+
+            globVar.temp_text = numbers.getCorrectNumberType(temp_number);
 
             Button addButton =new Button(this);
             addButton.setId(temp_number);
-            addButton.setText(GlobVar.getInstance().temp_text);
+            addButton.setText(globVar.temp_text);
             addButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     checkCorrectAnswer(((Button) view).getText().toString());
@@ -45,7 +46,7 @@ public class Game extends Activity implements View.OnClickListener {
     }
 
     private void checkCorrectAnswer(String text) {
-        if (text.equals(Integer.toString(numbers.correctAnswer))) {
+        if (text.equals(numbers.getCorrectAnswer())) {
             Intent backToMain = new Intent(this, Menue.class);
             startActivity(backToMain);
             this.finish();
