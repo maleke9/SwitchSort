@@ -14,13 +14,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class Fade_pregame extends Activity implements View.OnClickListener {
+public class PreGame extends Activity implements View.OnClickListener {
 
     int[] intArray;
     Button btnStartGame;
-    List<Integer> numbers;
-    Random randomizer = new Random();
-    Random rng = new Random();
+    List<Integer> gameNumbers;
 
 
     @Override
@@ -34,34 +32,22 @@ public class Fade_pregame extends Activity implements View.OnClickListener {
         btnStartGame = findViewById(R.id.btn_startGame);
         btnStartGame.setOnClickListener(this);
 
-        numbers = numbers(GlobVar.getInstance().gameMode);
-        int correctAnswer = numbers.get(randomizer.nextInt(numbers.size()));
-        numbers.add(correctAnswer);
+        Numbers numbers = Numbers.getInstance();
+        GlobVar globvar = GlobVar.getInstance();
 
-        //List to array
-        intArray = ArrayUtils.toPrimitive(numbers.toArray(new Integer[numbers.size()]));
+        numbers.setGame();
 
-        //Store numbers in Global variable
-        GlobVar.getInstance().numbers = intArray;
-        tv_toBeSearchedNumber.setText(String.format(Locale.GERMAN,"%d", correctAnswer));
+        tv_toBeSearchedNumber.setText(String.format(Locale.GERMAN,"%d", numbers.correctAnswer));
 
     }
 
-    public List<Integer> numbers(int numbersNeeded) {
 
-        List<Integer> generated = new LinkedList<>();
-        while (generated.size() < numbersNeeded) {
-            Integer next = rng.nextInt(numbersNeeded) + 1;
-            generated.add(next);
-        }
-        return generated;
-    }
 
     @Override
     public void onClick(View v) {
         //Konsolenausgabe via logcat
         //Log.d("Array", numbers.toString());
-        Intent intent = new Intent(this, test_dynamic.class);
+        Intent intent = new Intent(this, Game.class);
         startActivity(intent);
         this.finish();
     }
