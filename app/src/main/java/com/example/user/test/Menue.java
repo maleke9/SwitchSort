@@ -36,7 +36,7 @@ public class Menue extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.btn_Start:
-                Intent toGame = new Intent(this, Fade_pregame.class);
+                Intent toGame = new Intent(this, PreGame.class);
                 startActivity(toGame);
                 break;
         }

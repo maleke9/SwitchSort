@@ -9,18 +9,18 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class test_dynamic extends Activity implements View.OnClickListener {
-    int correctAnswer = -1;
+public class Game extends Activity implements View.OnClickListener {
+    GlobVar globVar = GlobVar.getInstance();
+    Numbers numbers = Numbers.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        setCorrectAnswer();
         GridLayout mainLayout = findViewById(R.id.gridlayout);
         mainLayout.setColumnCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
         mainLayout.setRowCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
         TextView tv_gameShowCorrectAnswer = findViewById(R.id.tv_gameShowCorrectAnswer);
-        String gameShowCorrectAnswer = "Find : "+Integer.toString(correctAnswer);
+        String gameShowCorrectAnswer = "Find : "+Integer.toString(numbers.correctAnswer);
         tv_gameShowCorrectAnswer.setText(gameShowCorrectAnswer);
         createButtons(mainLayout);
 
@@ -28,8 +28,8 @@ public class test_dynamic extends Activity implements View.OnClickListener {
     }
 
     private void createButtons(GridLayout mainLayout) {
-        for (int i = 1; i <= GlobVar.getInstance().gameMode; i ++ ) {
-            int temp_number = GlobVar.getInstance().numbers[i];
+        for (int i = 0; i <= globVar.gameMode-1;i ++ ) {
+            int temp_number = numbers.gameNumbers[i];
             GlobVar.getInstance().temp_text = Integer.toString(temp_number);
 
             Button addButton =new Button(this);
@@ -45,7 +45,7 @@ public class test_dynamic extends Activity implements View.OnClickListener {
     }
 
     private void checkCorrectAnswer(String text) {
-        if (text.equals(Integer.toString(correctAnswer))) {
+        if (text.equals(Integer.toString(numbers.correctAnswer))) {
             Intent backToMain = new Intent(this, Menue.class);
             startActivity(backToMain);
             this.finish();
@@ -56,9 +56,7 @@ public class test_dynamic extends Activity implements View.OnClickListener {
             toast.show();
         }
     }
-    private void setCorrectAnswer() {
-        correctAnswer = GlobVar.getInstance().numbers[GlobVar.getInstance().numbers.length - 1];
-    }
+
     @Override
     public void onClick(View v) {
 

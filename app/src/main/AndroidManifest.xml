@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Fade_pregame" />
-        <activity android:name=".test_dynamic"></activity>
+        <activity android:name=".PreGame" />
+        <activity android:name=".Game"></activity>
         <activity android:name=".SettingsManager"></activity>
     </application>
 
