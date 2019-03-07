@@ -21,8 +21,6 @@ public class SettingsManager extends Activity implements View.OnClickListener {
         hard.setOnClickListener(this);
         save = findViewById(R.id.btn_save);
         save.setOnClickListener(this);
-
-
     }
 
 
