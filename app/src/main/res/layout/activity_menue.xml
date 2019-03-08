@@ -49,7 +49,7 @@
             android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@mipmap/icon" />
+            tools:srcCompat="@drawable/switchsort_icon" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
