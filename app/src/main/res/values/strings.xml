@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">Switch Sort</string>
+    <string name="start">Start</string>
+    <string name="highscores">Highscores</string>
+    <string name="settings">Settings</string>
+    <string name="version">Version: 0.5"</string>
+    <string name="disclaimer">"This app is a project from students of the DHBW Stuttgart.\n
+\n
+It's deployed with\n
+\n
+NO WARRANTY\n
+\n
+for correctness or availability.\n
+\n
+Felix Heuser, Maxim Kern (c) 2019"</string>
 </resources>

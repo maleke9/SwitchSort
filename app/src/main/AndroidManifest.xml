@@ -19,6 +19,7 @@
         <activity android:name=".PreGame" />
         <activity android:name=".Game"></activity>
         <activity android:name=".SettingsManager"></activity>
+        <activity android:name=".About"></activity>
     </application>
 
 </manifest>

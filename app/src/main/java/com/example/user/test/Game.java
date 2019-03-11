@@ -12,6 +12,8 @@ import android.widget.Toast;
 public class Game extends Activity implements View.OnClickListener {
     GlobVar globVar = GlobVar.getInstance();
     Numbers numbers = Numbers.getInstance();
+    long startTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +25,7 @@ public class Game extends Activity implements View.OnClickListener {
         String gameShowCorrectAnswer = "Find : "+numbers.getCorrectAnswer();
         tv_gameShowCorrectAnswer.setText(gameShowCorrectAnswer);
         createButtons(mainLayout);
-
-
+        startTime = System.currentTimeMillis();   // Start time for stop watch in milliseconds
     }
 
     private void createButtons(GridLayout mainLayout) {
@@ -48,8 +49,13 @@ public class Game extends Activity implements View.OnClickListener {
     private void checkCorrectAnswer(String text) {
         if (text.equals(numbers.getCorrectAnswer())) {
             Intent backToMain = new Intent(this, Menue.class);
+            long usedTime = System.currentTimeMillis() - startTime;
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Your time: " + usedTime + "ms",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+
             startActivity(backToMain);
-            this.finish();
         } else {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Wrong Number",
