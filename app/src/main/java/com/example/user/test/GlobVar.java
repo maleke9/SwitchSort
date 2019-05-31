@@ -3,7 +3,7 @@ package com.example.user.test;
 
 public class GlobVar {
     int gameMode= 4;
-    NumberType numberType;
+    NumberType numberType = NumberType.DEZ;
     String temp_text;
     private static GlobVar instance = null;
 

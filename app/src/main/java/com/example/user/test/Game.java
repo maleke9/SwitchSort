@@ -10,16 +10,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.user.test.db.DatabaseHelper;
+
 public class Game extends Activity implements View.OnClickListener {
     GlobVar globVar = GlobVar.getInstance();
     Numbers numbers = Numbers.getInstance();
     ImageView ivIcon;
     long startTime = 0;
-
+    DatabaseHelper databaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        databaseHelper = new DatabaseHelper(this);
 
         // Grid layout buttons
         GridLayout mainLayout = findViewById(R.id.gridlayout);
@@ -62,9 +65,10 @@ public class Game extends Activity implements View.OnClickListener {
     }
 
     private void checkCorrectAnswer(String text) {
-        if (text.equals(numbers.getCorrectAnswer())) {
+        if (text.equals(numbers.getCorrectNumberType(numbers.correctAnswer))) {
             Intent backToMain = new Intent(this, Menue.class);
             long usedTime = System.currentTimeMillis() - startTime;
+            databaseHelper.addData(Long.toString(usedTime));
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Your time: " + usedTime + "ms",
                     Toast.LENGTH_SHORT);

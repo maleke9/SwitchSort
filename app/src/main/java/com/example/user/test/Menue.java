@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.user.test.db.Highscore_activity;
+
 public class Menue extends Activity implements View.OnClickListener {
 
-    Button btn_Start, btn_Settings;
+    Button btn_Start, btn_Settings,btn_Highscores;
     ImageView ivIcon, ivLogo;
 
     @Override
@@ -24,6 +26,11 @@ public class Menue extends Activity implements View.OnClickListener {
         //Settings Button
         btn_Settings =  findViewById(R.id.btnSettings);
         btn_Settings.setOnClickListener(this);
+
+        //Highscore Button
+        btn_Highscores = findViewById(R.id.btnHighscores);
+        btn_Highscores.setOnClickListener(this);
+
 
         //Icon image view
         ivIcon = findViewById(R.id.ivIcon);
@@ -47,6 +54,10 @@ public class Menue extends Activity implements View.OnClickListener {
             case R.id.btnStart:
                 Intent toGame = new Intent(this, PreGame.class);
                 startActivity(toGame);
+                break;
+            case R.id.btnHighscores:
+                Intent toHighscores = new Intent(this, Highscore_activity.class);
+                startActivity(toHighscores);
                 break;
 
             case R.id.ivIcon:

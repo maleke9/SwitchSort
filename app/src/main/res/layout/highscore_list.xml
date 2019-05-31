@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_Reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="486dp"
+        android:layout_height="424dp" />
+
+    <Button
+        android:id="@+id/btn_HighToMenue"
+        android:layout_width="423dp"
+        android:layout_height="35dp"
+        android:baselineAligned="false"
+        android:text="Menue" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Average :" />
+
+    <TextView
+        android:id="@+id/txt_average"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:text="Average" />
+
+</LinearLayout>
