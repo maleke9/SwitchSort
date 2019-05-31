@@ -20,6 +20,9 @@
         <activity android:name=".Game"></activity>
         <activity android:name=".SettingsManager"></activity>
         <activity android:name=".About"></activity>
+        <activity android:name=".db.EditScore_activity"></activity>
+        <activity android:name=".db.Highscore_activity"></activity>
+
     </application>
 
 </manifest>

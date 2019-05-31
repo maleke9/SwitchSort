@@ -8,12 +8,12 @@ import android.widget.Button;
 
 public class SettingsManager extends Activity implements View.OnClickListener {
 
-    Button easy,medium,hard,save;
+    Button easy,medium,hard,save,dez,bin,hex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settingsmanager);
-        easy = (Button) findViewById(R.id.btn_easy);
+        easy = (Button) findViewById(R.id.btn_hex);
         easy.setOnClickListener(this);
         medium = (Button) findViewById(R.id.btn_medium);
         medium.setOnClickListener(this);
@@ -21,6 +21,15 @@ public class SettingsManager extends Activity implements View.OnClickListener {
         hard.setOnClickListener(this);
         save = findViewById(R.id.btn_save);
         save.setOnClickListener(this);
+
+        dez = findViewById(R.id.btn_dez);
+        dez.setOnClickListener(this);
+
+        bin = findViewById(R.id.btn_bin);
+        bin.setOnClickListener(this);
+
+        hex = findViewById(R.id.btn_hex);
+        hex.setOnClickListener(this);
     }
 
 
@@ -44,6 +53,15 @@ public class SettingsManager extends Activity implements View.OnClickListener {
                 Intent toMenue = new Intent(this, Menue.class);
                 startActivity(toMenue);
                 this.finish();
+                break;
+            case R.id.btn_dez:
+                GlobVar.getInstance().setNumberType(NumberType.DEZ);
+                break;
+            case R.id.btn_bin :
+                GlobVar.getInstance().setNumberType(NumberType.BIN);
+                break;
+            case R.id.btn_hex :
+                GlobVar.getInstance().setNumberType(NumberType.HEX);
                 break;
         }
         }

@@ -28,7 +28,7 @@ public class Numbers {
 
         List<Integer> generated = new LinkedList<>();
         while (generated.size() < numbersNeeded) {
-            Integer next = rng.nextInt(numbersNeeded) + 1;
+            Integer next = rng.nextInt(100) + 1;
             generated.add(next);
         }
         this.gameNumbers = intListToIntArray(generated);
@@ -65,6 +65,6 @@ public class Numbers {
     }
 
     public String getCorrectAnswer() {
-        return getCorrectNumberType(correctAnswer);
+        return Integer.toString(correctAnswer);
     }
 }

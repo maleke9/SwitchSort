@@ -24,9 +24,6 @@ public class PreGame extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        globVar.setNumberType(NumberType.BIN);
-
         setContentView(R.layout.activity_fade_pregame);
         TextView tv_toBeSearchedNumber;
         tv_toBeSearchedNumber = findViewById(R.id.tv_toBeSearchedNumber);
