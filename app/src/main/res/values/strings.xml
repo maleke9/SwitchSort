@@ -2,9 +2,18 @@
     <string name="app_name">Switch Sort</string>
     <string name="start">Start</string>
     <string name="highscores">Highscores</string>
+    <string name="reset">Reset</string>
+    <string name="menu">Menu</string>
     <string name="settings">Settings</string>
+    <string name="average">Average:</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="exit">Exit</string>
+    <string name="format">Number Format</string>
     <string name="version">Version: 0.5</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
     <string name="go">GO!</string>
+    <string name="backArrow">◀</string>
     <string name="findFollowing">Find following number:</string>
     <string name="disclaimer">"This app is a project from students of the DHBW Stuttgart.\n
 \n

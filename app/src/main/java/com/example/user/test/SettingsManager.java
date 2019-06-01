@@ -5,38 +5,51 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class SettingsManager extends Activity implements View.OnClickListener {
 
-    Button easy,medium,hard,save,dez,bin,hex;
+    Button btn_Easy, btn_Medium, btn_Hard, btn_Save, btn_Dez, btn_Bin, btn_Hex, btn_Back;
+    ImageView ivIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settingsmanager);
-        easy = (Button) findViewById(R.id.btn_hex);
-        easy.setOnClickListener(this);
-        medium = (Button) findViewById(R.id.btn_medium);
-        medium.setOnClickListener(this);
-        hard = (Button) findViewById(R.id.btn_hard);
-        hard.setOnClickListener(this);
-        save = findViewById(R.id.btn_save);
-        save.setOnClickListener(this);
 
-        dez = findViewById(R.id.btn_dez);
-        dez.setOnClickListener(this);
+        //Icon image view
+        ivIcon = findViewById(R.id.ivIcon);
+        ivIcon.setImageResource(R.drawable.switchsort_icon);
 
-        bin = findViewById(R.id.btn_bin);
-        bin.setOnClickListener(this);
+        // Set buttons
+        btn_Back = findViewById(R.id.btn_Back);
+        btn_Back.setOnClickListener(this);
 
-        hex = findViewById(R.id.btn_hex);
-        hex.setOnClickListener(this);
+        btn_Easy = findViewById(R.id.btn_easy);
+        btn_Easy.setOnClickListener(this);
+
+        btn_Medium = findViewById(R.id.btn_medium);
+        btn_Medium.setOnClickListener(this);
+
+        btn_Hard = findViewById(R.id.btn_hard);
+        btn_Hard.setOnClickListener(this);
+
+        btn_Save = findViewById(R.id.btn_save);
+        btn_Save.setOnClickListener(this);
+
+        btn_Dez = findViewById(R.id.btn_dez);
+        btn_Dez.setOnClickListener(this);
+
+        btn_Bin = findViewById(R.id.btn_bin);
+        btn_Bin.setOnClickListener(this);
+
+        btn_Hex = findViewById(R.id.btn_hex);
+        btn_Hex.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-
             case R.id.btn_easy:
                 GlobVar.getInstance().gameMode=4;
                 break;
@@ -50,8 +63,8 @@ public class SettingsManager extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.btn_save:
-                Intent toMenue = new Intent(this, Menue.class);
-                startActivity(toMenue);
+                Intent toMenu = new Intent(this, Menue.class);
+                startActivity(toMenu);
                 this.finish();
                 break;
             case R.id.btn_dez:
@@ -63,6 +76,19 @@ public class SettingsManager extends Activity implements View.OnClickListener {
             case R.id.btn_hex :
                 GlobVar.getInstance().setNumberType(NumberType.HEX);
                 break;
+            case R.id.btn_Back:
+                backToMain();
+                break;
         }
-        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backToMain();
+    }
+
+    private void backToMain() {
+        Intent backToMain = new Intent(this, Menue.class);
+        startActivity(backToMain);
+    }
 }

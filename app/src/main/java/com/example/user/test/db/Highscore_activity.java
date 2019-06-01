@@ -7,10 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,7 +29,7 @@ public class Highscore_activity extends AppCompatActivity implements View.OnClic
 
     private static final String TAG = "ListDataActivity";
 
-    Button btn_HighToMenue,btn_Reset;
+    Button btn_HighToMenu, btn_Reset;
     TextView average;
     DatabaseHelper mDatabaseHelper;
 
@@ -39,16 +39,19 @@ public class Highscore_activity extends AppCompatActivity implements View.OnClic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.highscore_list);
-        mListView = (ListView) findViewById(R.id.listView);
+
+        mListView = findViewById(R.id.listView);
         mDatabaseHelper = new DatabaseHelper(this);
 
-        btn_HighToMenue = findViewById(R.id.btn_HighToMenue);
-        btn_HighToMenue.setOnClickListener(this);
-        btn_HighToMenue = findViewById(R.id.btn_Reset);
-        btn_HighToMenue.setOnClickListener(this);
-        average = (TextView) findViewById(R.id.txt_average);
-        average.setText(Double.toString(mDatabaseHelper.getavg()));
+        // Set buttons
+        btn_HighToMenu = findViewById(R.id.btn_HighToMenu);
+        btn_HighToMenu.setOnClickListener(this);
+        btn_Reset = findViewById(R.id.btn_Reset);
+        btn_Reset.setOnClickListener(this);
 
+        // Set average
+        average = findViewById(R.id.txt_average);
+        average.setText(Double.toString(mDatabaseHelper.getavg()));
 
         populateListView();
     }
@@ -56,19 +59,19 @@ public class Highscore_activity extends AppCompatActivity implements View.OnClic
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in the ListView.");
 
-        //get the data and append to a list
+        // Get the data and append to a list
         Cursor data = mDatabaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
         while (data.moveToNext()) {
-            //get the value from the database in column 1
-            //then add it to the ArrayList
+            // Get the value from the database in column 1
+            // then add it to the ArrayList
             listData.add(data.getString(1));
         }
-        //create the list adapter and set the adapter
+        // Create the list adapter and set the adapter
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         mListView.setAdapter(adapter);
 
-        //set an onItemClickListener to the ListView
+        // Set an onItemClickListener to the ListView
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -104,18 +107,24 @@ public class Highscore_activity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        Intent toMenue = new Intent(this, Menue.class);
         switch (v.getId()) {
-
-            case R.id.btn_HighToMenue:
-                startActivity(toMenue);
+            case R.id.btn_HighToMenu:
+                backToMain();
                 break;
             case R.id.btn_Reset:
                 mDatabaseHelper.deleteAll();
-                startActivity(toMenue);
+                backToMain();
                 break;
-
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        backToMain();
+    }
+
+    private void backToMain() {
+        Intent backToMain = new Intent(this, Menue.class);
+        startActivity(backToMain);
+    }
 }
