@@ -18,37 +18,35 @@ import java.util.Random;
 public class PreGame extends Activity implements View.OnClickListener {
 
     Button btnStartGame;
-    GlobVar globVar = GlobVar.getInstance();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fade_pregame);
-        TextView tv_toBeSearchedNumber;
-        tv_toBeSearchedNumber = findViewById(R.id.tv_toBeSearchedNumber);
 
         btnStartGame = findViewById(R.id.btn_startGame);
         btnStartGame.setOnClickListener(this);
 
-        Numbers numbers = Numbers.getInstance();
-        GlobVar globvar = GlobVar.getInstance();
-
+        Numbers numbers = Numbers.getInstance(this);
         numbers.setGame();
-        Log.d("number",Integer.toString(numbers.correctAnswer));
 
+        // Set text view
+        TextView tv_toBeSearchedNumber;
+        tv_toBeSearchedNumber = findViewById(R.id.tv_toBeSearchedNumber);
         tv_toBeSearchedNumber.setText(numbers.getCorrectAnswer());
 
     }
 
-
-
     @Override
     public void onClick(View v) {
-        //Konsolenausgabe via logcat
-        //Log.d("Array", numbers.toString());
         Intent intent = new Intent(this, Game.class);
         startActivity(intent);
         this.finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent backToMain = new Intent(this, Menue.class);
+        startActivity(backToMain);
     }
 }

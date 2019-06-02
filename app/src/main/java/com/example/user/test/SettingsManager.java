@@ -51,30 +51,27 @@ public class SettingsManager extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.btn_easy:
-                GlobVar.getInstance().gameMode=4;
+                GlobVar.getInstance(this).setGameMode(4);
                 break;
-
             case R.id.btn_medium:
-                GlobVar.getInstance().gameMode=9;
+                GlobVar.getInstance(this).setGameMode(9);
                 break;
-
             case R.id.btn_hard:
-                GlobVar.getInstance().gameMode=16;
+                GlobVar.getInstance(this).setGameMode(16);
                 break;
-
             case R.id.btn_save:
                 Intent toMenu = new Intent(this, Menue.class);
                 startActivity(toMenu);
                 this.finish();
                 break;
             case R.id.btn_dez:
-                GlobVar.getInstance().setNumberType(NumberType.DEZ);
+                GlobVar.getInstance(this).setNumberType(NumberType.DEZ);
                 break;
             case R.id.btn_bin :
-                GlobVar.getInstance().setNumberType(NumberType.BIN);
+                GlobVar.getInstance(this).setNumberType(NumberType.BIN);
                 break;
             case R.id.btn_hex :
-                GlobVar.getInstance().setNumberType(NumberType.HEX);
+                GlobVar.getInstance(this).setNumberType(NumberType.HEX);
                 break;
             case R.id.btn_Back:
                 backToMain();

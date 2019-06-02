@@ -1,6 +1,7 @@
 package com.example.user.test;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
@@ -11,7 +12,7 @@ public class About extends Activity implements View.OnClickListener {
 
     ImageView ivIcon;
     Button btn_Back;
-
+    SharedPreferences settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
