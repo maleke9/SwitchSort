@@ -8,4 +8,5 @@
     <color name="buttonBackground">@color/colorAccent</color>
     <color name="buttonText">@color/colorPrimaryDark</color>
     <color name="text">#F9F9F9</color>
+    <color name="lightGray">#9F9F9F</color>
 </resources>

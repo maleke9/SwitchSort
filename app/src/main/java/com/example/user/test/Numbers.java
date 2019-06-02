@@ -1,5 +1,6 @@
 package com.example.user.test;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Switch;
 
@@ -13,19 +14,25 @@ import java.util.Random;
 public class Numbers {
     Random rng = new Random();
     Random randomizer = new Random();
-    GlobVar globvar = GlobVar.getInstance();
+    GlobVar globvar;
+    Context context;
     int[] gameNumbers;
     int correctAnswer;
     private static Numbers instance = null;
 
-    public static Numbers getInstance() {
+    private Numbers(Context context) {
+        this.context = context;
+        globvar = GlobVar.getInstance(context);
+    }
+
+    public static Numbers getInstance(Context context) {
         if (instance == null) {
-            instance = new Numbers();
+            instance = new Numbers(context);
         }
         return instance;
     }
-        public void getNumbers(int numbersNeeded) {
 
+    public void getNumbers(int numbersNeeded) {
         List<Integer> generated = new LinkedList<>();
         while (generated.size() < numbersNeeded) {
             Integer next = rng.nextInt(100) + 1;
@@ -33,16 +40,17 @@ public class Numbers {
         }
         this.gameNumbers = intListToIntArray(generated);
     }
+
     public void setCorrectAnswer(){
-        this.correctAnswer = gameNumbers[randomizer.nextInt(globvar.gameMode)];
+        this.correctAnswer = gameNumbers[randomizer.nextInt(globvar.getGameMod())];
     }
 
     public int[] intListToIntArray(List<Integer> intList){
-         return ArrayUtils.toPrimitive(intList.toArray(new Integer[intList.size()]));
+        return ArrayUtils.toPrimitive(intList.toArray(new Integer[intList.size()]));
     }
 
     public void setGame() {
-        getNumbers(globvar.gameMode);
+        getNumbers(globvar.getGameMod());
         setCorrectAnswer();
     }
     public String setNumberBin(int number){
@@ -52,7 +60,7 @@ public class Numbers {
     return Integer.toHexString(number);
     }
     public String getCorrectNumberType(int number){
-        switch (globvar.numberType){
+        switch (globvar.getNumberType()){
             case DEZ:
                 return Integer.toString(number);
             case BIN:

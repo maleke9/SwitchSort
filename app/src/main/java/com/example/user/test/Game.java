@@ -13,11 +13,12 @@ import android.widget.Toast;
 import com.example.user.test.db.DatabaseHelper;
 
 public class Game extends Activity implements View.OnClickListener {
-    GlobVar globVar = GlobVar.getInstance();
-    Numbers numbers = Numbers.getInstance();
+    GlobVar globVar = GlobVar.getInstance(this);
+    Numbers numbers = Numbers.getInstance(this);
     ImageView ivIcon;
     long startTime = 0;
     DatabaseHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +27,9 @@ public class Game extends Activity implements View.OnClickListener {
 
         // Grid layout buttons
         GridLayout mainLayout = findViewById(R.id.gridlayout);
-        mainLayout.setColumnCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
-        mainLayout.setRowCount((int) Math.sqrt((double)GlobVar.getInstance().gameMode));
+
+        mainLayout.setColumnCount((int) Math.sqrt((double)globVar.getGameMod()));
+        mainLayout.setRowCount((int) Math.sqrt((double)globVar.getGameMod()));
 
         // Set correct answer
         TextView tv_gameShowCorrectAnswer = findViewById(R.id.tv_gameShowCorrectAnswer);
@@ -44,7 +46,7 @@ public class Game extends Activity implements View.OnClickListener {
     }
 
     private void createButtons(GridLayout mainLayout) {
-        for (int i = 0; i <= globVar.gameMode-1;i ++ ) {
+        for (int i = 0; i <= globVar.getGameMod()-1;i ++ ) {
             int temp_number = numbers.gameNumbers[i];
 
             globVar.temp_text = numbers.getCorrectNumberType(temp_number);
@@ -90,5 +92,11 @@ public class Game extends Activity implements View.OnClickListener {
                 //TODO: Pause
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent backToMain = new Intent(this, Menue.class);
+        startActivity(backToMain);
     }
 }
