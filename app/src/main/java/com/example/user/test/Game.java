@@ -86,12 +86,6 @@ public class Game extends Activity implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.ivIcon:
-                //TODO: Pause
-                break;
-        }
     }
 
     @Override
