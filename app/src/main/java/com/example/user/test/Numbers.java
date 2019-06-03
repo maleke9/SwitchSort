@@ -59,6 +59,7 @@ public class Numbers {
     public String setNumberHex(int number){
     return Integer.toHexString(number);
     }
+
     public String getCorrectNumberType(int number){
         switch (globvar.getNumberType()){
             case DEZ:
